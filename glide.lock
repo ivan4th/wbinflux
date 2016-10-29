@@ -1,0 +1,46 @@
+hash: 9807e2ebe8fd260d0a83307ceef71784f44bc096fa7f4d95346af308651b1778
+updated: 2016-10-26T11:10:26.401537594+03:00
+imports:
+- name: github.com/contactless/org.eclipse.paho.mqtt.golang
+  version: bc107ec72972f0e7048787415ea061578b5c3f33
+  subpackages:
+  - packets
+- name: github.com/contactless/wbgo
+  version: b4f50f05d953975e0dc0401a65c604f8fe98f496
+  subpackages:
+  - testutils
+- name: github.com/davecgh/go-spew
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
+  subpackages:
+  - spew
+- name: github.com/go-yaml/yaml
+  version: a5b47d31c556af34a302ce5d659e6fea44d90de0
+- name: github.com/influxdata/influxdb
+  version: 7cc95ce28b9ced8481d26a8d11a0eabede60d00f
+  subpackages:
+  - client
+  - models
+  - pkg/escape
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
+- name: github.com/stretchr/objx
+  version: 1a9d0bb9f541897e62256577b352fdbc1fb4fd94
+- name: github.com/stretchr/testify
+  version: 976c720a22c8eb4eb6a0b4348ad85ad12491a506
+  subpackages:
+  - assert
+  - require
+  - suite
+- name: golang.org/x/net
+  version: 65dfc08770ce66f74becfdff5f8ab01caef4e946
+  subpackages:
+  - websocket
+- name: golang.org/x/sys
+  version: c200b10b5d5e122be351b67af224adc6128af5bf
+  subpackages:
+  - unix
+- name: gopkg.in/fsnotify.v1
+  version: 629574ca2a5df945712d3079857300b5e4da0236
+testImports: []
