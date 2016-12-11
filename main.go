@@ -18,6 +18,7 @@ func main() {
 	if *debug {
 		wbgo.SetDebuggingEnabled(true)
 	}
+
 	confBytes, err := ioutil.ReadFile(*configPath)
 	if err != nil {
 		wbgo.Error.Fatalf("can't load wbinflux config: %v", err)

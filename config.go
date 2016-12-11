@@ -39,13 +39,14 @@ func (rc *RawConfig) Convert() (*Config, error) {
 
 type RawMeasurement struct {
 	Name   string
+	Prefix string
 	Topics []RawTopic
 }
 
 func (rm RawMeasurement) Convert() (Measurement, error) {
 	m := Measurement{Name: rm.Name}
 	for _, rt := range rm.Topics {
-		t, err := rt.Convert()
+		t, err := rt.Convert(rm.Prefix)
 		if err != nil {
 			return m, err
 		}
@@ -61,7 +62,7 @@ type RawTopic struct {
 	Tags          map[string]string
 }
 
-func (rt RawTopic) Convert() (Topic, error) {
+func (rt RawTopic) Convert(prefix string) (Topic, error) {
 	t := Topic{}
 
 	t.Tags = make(map[string]string)
@@ -80,9 +81,9 @@ func (rt RawTopic) Convert() (Topic, error) {
 		if len(parts) != 2 {
 			return t, errors.New("invalid deviceControl")
 		}
-		t.Topic = fmt.Sprintf("/devices/%s/controls/%s", parts[0], parts[1])
+		t.Topic = fmt.Sprintf("%s/devices/%s/controls/%s", prefix, parts[0], parts[1])
 	case rt.Topic != "":
-		t.Topic = rt.Topic
+		t.Topic = prefix + rt.Topic
 	default:
 		return t, fmt.Errorf("must specify either devctl or topic: %#v", rt)
 	}

@@ -27,6 +27,13 @@ measurements:
       devctl: wb-w1/28-0000058e1692
     - name: Dining Room
       devctl: wb-w1/28-000007558653
+  - name: misc
+    prefix: /misc
+    topics:
+    - name: Control One
+      topic: /devices/somedev/controls/somecontrol
+    - name: Control Two
+      devctl: somedev/somecontrol
 `
 
 var sampleConfig = Config{
@@ -77,13 +84,30 @@ var sampleConfig = Config{
 				},
 			},
 		},
+		{
+			Name: "misc",
+			Topics: []Topic{
+				{
+					Topic: "/misc/devices/somedev/controls/somecontrol",
+					Tags: map[string]string{
+						"name": "Control One",
+					},
+				},
+				{
+					Topic: "/misc/devices/somedev/controls/somecontrol",
+					Tags: map[string]string{
+						"name": "Control Two",
+					},
+				},
+			},
+		},
 	},
 }
 
 func verifyConfig(t *testing.T, source string, expectedConfig Config) {
 	actualConfig, err := ParseConfig([]byte(source))
 	if err != nil {
-		t.Fatalf("LoadConfig failed: %v", err)
+		t.Fatalf("ParseConfig failed: %v", err)
 	}
 	if !reflect.DeepEqual(*actualConfig, expectedConfig) {
 		t.Fatalf("Config mismatch. Expected:\n%#v\nActual:\n%#v", *actualConfig, expectedConfig)
